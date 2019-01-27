@@ -1,3 +1,15 @@
-.pianta>img{
-    width: 116%
+.pianta>img {
+    width: 120%;
+    margin-top: -10% !important
+}
+
+#season {
+    font-size: 150px;
+   
+}
+.infos{
+    background: rgba(2, 2, 2, 0.644);
+    border-radius: 40px;
+    border: 5px solid white;
+    padding: 10%!important
 }

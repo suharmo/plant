@@ -11,25 +11,32 @@
     <title>Document</title>
 </head>
 
-<body class="row bg-dark">
-    <div class="pianta col-8">
-        <img src="/image/vaso.png" alt="">
-    </div>
-    <div class="col-4">
-        <h1 class="display-1" id="season"></h1>
-        <div id="temp">
-            <h1>The actual temperature is: <span id="actualTemp"></span>°</h1>
-            <h1>the ideal temperature is: <span id="idealTemp"></span>°</h1>
-            <button id="increaseTemp" class="btn btn-danger" onclick="increaseTempFun()">Increase</button>
-            <button id="decreaseTemp" class="btn btn-warning" onclick="decreaseTempFun()">Decrease</button>
+<body class=" bg-dark">
+    <h1 class="display-1 text-center" id="season"></h1>
+    <div class="row align-items-center ml-0 mr-0">
+        <div class="pianta col-6">
+            <img src="/image/vaso.png" alt="">
         </div>
-        <div id="water">
-            <h1>Your plant has <span id="waterPlant"></span>cl of water.</h1>
-            <h1>Your plant needs <span id="idealAmountWater"></span>cl of water.</h1>
-            <button class="btn btn-primary">Add water</button>
-
+        <div class="col-6 pr-5">
+           <div class=" infos  pl-5 pt-5 pb-5 mr-3 text-center">
+                <div id="temp">
+                        <h1 class="pb-3"><b> The actual temperature is: <span id="actualTemp" class="mt-4 p-2"></span>°</b></h1>
+                        <h1  class="pb-3"><b> The ideal temperature is between: <span id="idealTemp"></span></b></h1>
+                       <div class="text-center">
+                        <button id="increaseTemp" class="btn btn-danger p-3 m-3" onclick="increaseTempFun()">Increase</button>
+                        <button id="decreaseTemp" class="btn btn-warning p-3" onclick="decreaseTempFun()">Decrease</button>
+                       </div>
+                    </div>
+                    <div id="water">
+                        <h1 class="pb-3"><b> Your plant has <span id="waterPlant" class="bg-light p-2"></span>cl of water.</b></h1>
+                        <h1 class="pb-3"><b> Your plant needs <span id="idealAmountWater"></span>cl of water.</b></h1>
+                        <button class="btn btn-primary p-3" id="addWater" onclick="plant.addWater(plant)">Add water</button>
+        
+                    </div>
+           </div>
         </div>
     </div>
     <script src="/src/app.js"></script>
 </body>
+
 </html>
