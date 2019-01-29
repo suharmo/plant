@@ -13,3 +13,83 @@
     border: 5px solid white;
     padding: 10%!important
 }
+.count{
+    width: 30%;
+    border: 5px solid white;
+    border-radius: 20px;
+}
+.count>button{
+    border-bottom-left-radius: 14px!important;
+    border-bottom-right-radius: 14px!important;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-top: 2px solid white
+
+}
+#increaseTemp{
+    border-bottom-left-radius: 14px!important;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-top: 2px solid white
+}
+#decreaseTemp{
+    border-bottom-right-radius: 14px!important;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-top: 2px solid white
+}
+
+#water, #temp{
+    border-top-left-radius: 14px!important;
+    border-top-right-radius: 14px!important;
+}
+
+#startGame{
+    font-size: 30px!important
+}
+
+.questionDiv{
+    background: rgba(2, 2, 2, 0.89);
+    color: beige;
+    border-radius: 40px;
+    border: 5px solid white;
+    padding: 6%;
+    width: 60%;
+    position: absolute;
+    top: 30%;
+    right: 18%;
+}
+
+.questionDiv>div>button{
+    font-size: 30px!important;
+    padding: 1.5%
+}
+
+.questionDiv>input{
+    padding: 2%;
+    width: 64%
+}
+
+.notification{
+    background: rgba(2, 2, 2, 0.938);
+    border-radius: 40px;
+    border: 5px solid white;
+    padding: 6%;
+    width: 60%;
+    position: absolute;
+    top: 30%;
+    right: 18%;
+
+}
+
+.notification>button{
+    font-size: 25px;
+    padding: 2%;
+}
+
+.notification>i{
+    font-size: 60px
+}
+#pauseGame{
+    font-size: 35px
+}

@@ -1,42 +1,91 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/style.css">
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Lobster+Two|Merienda|Permanent+Marker|Righteous" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <title>Document</title>
 </head>
 
 <body class=" bg-dark">
+    <button class="btn btn-danger m-3" id="pauseGame"><i class="fas fa-pause"></i></button>
     <h1 class="display-1 text-center" id="season"></h1>
     <div class="row align-items-center ml-0 mr-0">
-        <div class="pianta col-6">
-            <img src="/image/vaso.png" alt="">
+        <div class="col-6 text-center">
+            <button class="btn btn-danger h1 p-3" id="startGame">Start game</button>
+        </div>
+        <div class="pianta col-6 d-none">
+            <img src="./image/vaso.png" alt="">
         </div>
         <div class="col-6 pr-5">
-           <div class=" infos  pl-5 pt-5 pb-5 mr-3 text-center">
-                <div id="temp">
-                        <h1 class="pb-3"><b> The actual temperature is: <span id="actualTemp" class="mt-4 p-2"></span>°</b></h1>
-                        <h1  class="pb-3"><b> The ideal temperature is between: <span id="idealTemp"></span></b></h1>
-                       <div class="text-center">
-                        <button id="increaseTemp" class="btn btn-danger p-3 m-3" onclick="increaseTempFun()">Increase</button>
-                        <button id="decreaseTemp" class="btn btn-warning p-3" onclick="decreaseTempFun()">Decrease</button>
-                       </div>
+            <div class=" infos  pl-5 pt-5 pb-5 mr-3 text-center">
+                <div class="d-flex radious-rounded">
+                    <div class="m-3 count">
+                        <h1 class="p-2 mb-0" id="temp"><b><span id="actualTemp"></span>° <i class="fas fa-temperature-low"></i></b></h1>
+                        <div class="w-100 d-flex">
+                            <button id="increaseTemp" class="btn btn-danger p-3 w-50"> +
+                            </button>
+                            <button id="decreaseTemp" class="btn btn-warning p-3 w-50"> -
+                            </button>
+                        </div>
                     </div>
-                    <div id="water">
-                        <h1 class="pb-3"><b> Your plant has <span id="waterPlant" class="bg-light p-2"></span>cl of water.</b></h1>
-                        <h1 class="pb-3"><b> Your plant needs <span id="idealAmountWater"></span>cl of water.</b></h1>
-                        <button class="btn btn-primary p-3" id="addWater" onclick="plant.addWater(plant)">Add water</button>
-        
+                    <div class="m-3 count">
+                        <h1 class="p-2 mb-0" id="water"><b><span id="waterPlant"></span>cl <i class="fas fa-tint"></i></b></h1>
+                        <button class="btn btn-primary p-3 w-100" id="addWater"> +
+                        </button>
                     </div>
-           </div>
+                    <div class="m-3 count bg-warning text-dark">
+                        <h1 class="p-2 mb-0" id="money"><b><span id="moneyAvailable"></span>$</b></h1>
+                        <button class="btn btn-success p-3 w-100" id="dropQuestion"> +
+                        </button>
+                    </div>
+                </div>
+                <div id="water">
+                    <h1 class="pb-3"><b> The ideal temperature is between: <span id="idealTemp"></span></b></h1>
+
+                    <h1 class="pb-3"><b> Your plant needs <span id="idealAmountWater"></span>cl of water.</b></h1>
+
+                </div>
+            </div>
         </div>
     </div>
-    <script src="/src/app.js"></script>
+    <div class="questionDiv text-center d-none">
+        <div>
+            <h1 id="quest">
+                question 1 Lorem ipsum dolor sit amet consectetur, adipisicing elit?
+            </h1>
+            <h3 id="answers12">answer1 , answer2</h3>
+            <h3 id="answers34">answer1 , answer2</h3>
+        </div>
+        <input type="text" placeholder="enter your answer ex: a " class="m-4" id="inputQuestion" autofocus>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-info m-3" id="next"> Next </button>
+            <button class="btn btn-success m-3" id="confirm">Confirm</button>
+        </div>
+    </div>
+    <div id="verified" class="notification text-success text-center d-none">
+            <i class="fas fa-check-circle"></i>
+            <h1>Correct! you gained 5$</h1>
+            <button class="ok btn btn-success px-5">Ok</button>
+    </div>
+    <div id="wrong"  class="notification text-danger text-center d-none">
+            <i class="fas fa-times-circle"></i>
+            <h1>Wrong answer! try again</h1>
+            <button class="ok btn btn-danger px-5">Ok</button>
+    </div>
+    <div id="dead"  class="notification text-danger text-center d-none">
+            <h1>Game over</h1>
+            <button class="ok btn btn-danger px-5">Ok</button>
+    </div>
+
+    <script type="module" src="./src/startgame.js"></script>
 </body>
 
 </html>
