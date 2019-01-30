@@ -31,7 +31,7 @@ export class Plant {
     waterDecrease(spanWater, pause) {
         spanWater.innerHTML = this.water;
         setInterval(() => {
-            if (pause)
+            if (pause.value == true)
                 return;
             if (this.water > 0) {
                 this.water -= 2;
@@ -40,7 +40,7 @@ export class Plant {
 
         }, 7000)
         setInterval(() => {
-            if (pause)
+            if (pause.value == true)
                 return;
             counterWater.container = spanDanger(waterHeading, plant.water, plant.maxWater, plant.minWater, counterWater.container)
         }, 200)
@@ -59,4 +59,11 @@ export let questionsObj  = {
      }
 }
 
+
+export let pause = {
+    value : false
+}
+export let done = {
+    value : true
+}
 //everything works fine

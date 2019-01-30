@@ -29,8 +29,11 @@ let okw =document.getElementsByClassName('ok')[1];
 let dead = document.getElementById('dead');
 let okd = document.getElementsByClassName('ok')[2];
 let pauseGame = document.getElementById('pauseGame');
-
-
+let pauseDiv = document.getElementById('pauseDiv');
+let counterDiv = document.getElementById('counterDiv');
+let counterQuest = document.getElementById('counterQuest');
+let time = document.getElementById('timeUp');
+let okTime = document.getElementsByClassName('okTime')[0]
 export {
     piantaImg,
     seasonHeading,
@@ -62,7 +65,13 @@ export {
     okw,
     dead, 
     okd,
-    pauseGame
+    pauseGame,
+    pauseDiv,
+    counterDiv,
+    counterQuest,
+    time,
+    okTime
+
 }
 
 //everything works fine

@@ -9,10 +9,11 @@ import {
 import {
     seasons,
     Plant,
-    questionsObj
+    questionsObj,
+    pause
 } from "./_objects.js";
 import {
-    checkLifePlant
+    checkLifePlant, enterKey
 } from "./_functionalities.js";
 import {
     actualWater,
@@ -39,18 +40,24 @@ import {
     dead,
     okd,
     pauseGame,
+    pauseDiv,
+    okTime,
+    nextQ,
 } from "./_dom.js";
 import {
     addMoneyFun,
     confirmAnswer,
     okVery,
     okWrong,
-    countQ
+    countQ,
+    timeUp,
+    okTimeup,
+    clearUp,
+    next,
 } from "./_questions.js";
 
 //----------------------------------------------------------------------------------------------------------
 export const plant = new Plant('armoniosa', 0, 45, 10, 40, 10, 25, 0)
-var pause = false;
 
 let addWaterl = () => {
     if (questionsObj.score > 0) {
@@ -68,44 +75,48 @@ decreaseTemp.addEventListener('click', () => {
 addWaterBtn.addEventListener('click', addWaterl);
 let y = 0
 
-changeSeasonStyle(seasons.seasonName[y], seasons.font[y], seasons.colorText[y], seasons.bgImage[y], seasonHeading, body, infosDiv)
+changeSeasonStyle(seasons.seasonName[0], seasons.font[0], seasons.colorText[0], seasons.bgImage[0], seasonHeading, body, infosDiv)
 
 const startGame = (seasonsTab, pathsImg) => {
     // initGame 
     pianta.setAttribute('style', 'display : block!important')
     let parent = startBtn.parentElement
-    parent.setAttribute('style', 'display : none')
+    parent.setAttribute('style', 'display : none!important')
 
     seasons.actualTemperature = changeSeasonTemp(seasons.actualTemperature, seasons.minTemperature[y], seasons.maxTemperature[y])
 
     console.log(seasons.actualTemperature);
     console.log(seasons.actualTemperature);
-    setInterval(() => {
-        if (pause)
-            return;
-        seasons.actualTemperature = changeSeasonTemp(seasons.actualTemperature, seasons.minTemperature[y], seasons.maxTemperature[y])
-        console.log(y)
-    }, 15000)
+    
     //  (init plante)
     setInterval(() => {
-        if (pause)
-            return;
+        
+        y += 1
         if (y == seasonsTab.length) {
             y = 0;
         }
-        y += 1
         changeSeasonStyle(seasons.seasonName[y], seasons.font[y], seasons.colorText[y], seasons.bgImage[y], seasonHeading, body, infosDiv)
-
-    }, 60000);
+        if (pause.value == true)
+            return;
+    }, 6000);
+    setInterval(() => {
+        if (pause.value == true)
+            return;
+        seasons.actualTemperature = changeSeasonTemp(seasons.actualTemperature, seasons.minTemperature[y], seasons.maxTemperature[y])
+        console.log(y)
+        
+    }, 15000)
 
     setInterval(() => {
-        if (pause)
+        if (pause.value == true)
             return;
         checkLifePlant();
     }, 1000)
 
     for (let i in pathsImg) {
         addP1(pathsImg[i], 20000 * (i - 0 + 1), piantaImg);
+        if (pause.value == true)
+            return;
     }
     plant.waterDecrease(actualWater, pause);
 }
@@ -121,39 +132,46 @@ const paths = ['/image/pianta1.png', '/image/pianta2.png', '/image/pianta3.png',
 //----------------------------------------------------------------------------------------------------------------
 startBtn.addEventListener('click', () => {
     startGame(seasons.seasonName, paths)
+    
 })
 dropQuestion.addEventListener('click', () => {
     questionDiv.setAttribute('style', 'display : block!important');
-    pause = addMoneyFun(questHead, answersHead1, answersHead2, questionsObj.questions, questionsObj.answers, questionsObj.answers, pause);
-    
+    pause.value = addMoneyFun(questHead, answersHead1, answersHead2, questionsObj.questions, questionsObj.answers, questionsObj.answers, pause.value);
+    clearUp =  timeUp()
 })
 idealTemp.innerHTML = '\n' + plant.idealMinTemp + '° and ' + plant.idealMaxTemp + '°'
 confirm.addEventListener('click', () => {
-    confirmAnswer(inputQuestion,  questionsObj.questions)
+   confirmAnswer(inputQuestion,  questionsObj.questions)
 })
 okv.addEventListener('click', () => {
     okVery()
-    pause = false;
+    pause.value = false;
 })
 okw.addEventListener('click', () => {
     okWrong()
+    pause.value = false;
+})
+okTime.addEventListener('click', () => {
+    okTimeup()
+    pause.value = false;
 })
 
-okd.addEventListener('click', () => {
-    pause = true
-    dead.setAttribute('style', 'display: none!important')
-});
-
+document.addEventListener('keypress', enterKey)
 pauseGame.addEventListener('click', () => {
-    if (pause == false){
-        pause = true;
+    if (pause.value == false){
+        pause.value = true;
         pauseGame.innerHTML = '<i class="fas fa-play"></i>'
-        return pause;
+        pauseDiv.setAttribute('style', 'display : block!important')
     }else{
-        pause = false;
+        pause.value = false;
         pauseGame.innerHTML = '<i class="fas fa-pause"></i>'
-        return pause
+        pauseDiv.setAttribute('style', 'display : none!important')
     }
+    console.log(pause.value);
+})
+nextQ.addEventListener('click', ()=>{
+   next(questionsObj.questions)
+   pause.value = addMoneyFun(questHead, answersHead1, answersHead2, questionsObj.questions, questionsObj.answers, questionsObj.answers, pause.value);
 })
 //-----------------------------------------------------------
 //parametre for actualTemp and seasons.actualTemperaturex does not work if passed in function as parametre
