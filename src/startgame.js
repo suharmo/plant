@@ -98,7 +98,7 @@ const startGame = (seasonsTab, pathsImg) => {
         changeSeasonStyle(seasons.seasonName[y], seasons.font[y], seasons.colorText[y], seasons.bgImage[y], seasonHeading, body, infosDiv)
         if (pause.value == true)
             return;
-    }, 6000);
+    }, 60000);
     setInterval(() => {
         if (pause.value == true)
             return;
